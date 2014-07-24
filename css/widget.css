@@ -19,7 +19,7 @@
  * tabs Bar
  */
 
-.waf-tabview2 > ul {
+.waf-tabs > ul {
     position: absolute;
     top:    0;
     bottom: 0;
@@ -32,29 +32,29 @@
 
     z-index: 101;
 }
-.waf-tabview2[class*="waf-tabview2-top"] > ul {
+.waf-tabs[class*="waf-tabs-top"] > ul {
     bottom: auto;
 }
-.waf-tabview2[class*="waf-tabview2-bottom"] > ul {
+.waf-tabs[class*="waf-tabs-bottom"] > ul {
     top: auto;
 }
-.waf-tabview2[class*="waf-tabview2-left"] > ul {
+.waf-tabs[class*="waf-tabs-left"] > ul {
     right: auto;
 }
-.waf-tabview2[class*="waf-tabview2-right"] > ul {
+.waf-tabs[class*="waf-tabs-right"] > ul {
     left: auto;
 }
 
-.waf-tabview2.waf-tabview2-topRight > ul {
+.waf-tabs.waf-tabs-topRight > ul {
     left: auto;
 }
-.waf-tabview2.waf-tabview2-bottomRight > ul {
+.waf-tabs.waf-tabs-bottomRight > ul {
     left: auto;
 }
-.waf-tabview2.waf-tabview2-leftBottom > ul {
+.waf-tabs.waf-tabs-leftBottom > ul {
     top: auto;
 }
-.waf-tabview2.waf-tabview2-rightBottom > ul {
+.waf-tabs.waf-tabs-rightBottom > ul {
     top: auto;
 }
 
@@ -63,33 +63,33 @@
  * tabs
  */
 
-.waf-tabview2 > ul li {
+.waf-tabs > ul li {
     display: block;
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.waf-tabview2[class*="waf-tabview2-top"] > ul li,
-.waf-tabview2[class*="waf-tabview2-bottom"] > ul li {
+.waf-tabs[class*="waf-tabs-top"] > ul li,
+.waf-tabs[class*="waf-tabs-bottom"] > ul li {
     float: left;
     height: 100%;
 }
 
-.waf-tabview2.waf-tabview2-topLeft > ul li:not(:last-of-type),
-.waf-tabview2.waf-tabview2-bottomLeft > ul li:not(:last-of-type) {
+.waf-tabs.waf-tabs-topLeft > ul li:not(:last-of-type),
+.waf-tabs.waf-tabs-bottomLeft > ul li:not(:last-of-type) {
     margin-right: 5px;
 }
-.waf-tabview2.waf-tabview2-topRight > ul li:not(:first-of-type),
-.waf-tabview2.waf-tabview2-bottomRight > ul li:not(:first-of-type) {
+.waf-tabs.waf-tabs-topRight > ul li:not(:first-of-type),
+.waf-tabs.waf-tabs-bottomRight > ul li:not(:first-of-type) {
     margin-left: 5px;
 }
-.waf-tabview2.waf-tabview2-leftTop > ul li:not(:last-of-type),
-.waf-tabview2.waf-tabview2-rightTop > ul li:not(:last-of-type) {
+.waf-tabs.waf-tabs-leftTop > ul li:not(:last-of-type),
+.waf-tabs.waf-tabs-rightTop > ul li:not(:last-of-type) {
     margin-bottom: 5px;
 }
-.waf-tabview2.waf-tabview2-leftBottom > ul li:not(:first-of-type),
-.waf-tabview2.waf-tabview2-rightBottom > ul li:not(:first-of-type) {
+.waf-tabs.waf-tabs-leftBottom > ul li:not(:first-of-type),
+.waf-tabs.waf-tabs-rightBottom > ul li:not(:first-of-type) {
     margin-top: 5px;
 }
 
@@ -98,7 +98,7 @@
  * close Tab
  */
 
-.waf-tabview2 .waf-tabview2-closeTab {
+.waf-tabs .waf-tabs-closeTab {
     border-width: 0;
     background-color: transparent;
     background-image: none;
@@ -109,7 +109,7 @@
  * containers 
  */
 
-.waf-tabview2 .waf-tabview2container {
+.waf-tabs .waf-tabscontainer {
     position: absolute;
     display: none;
     top:    0;
@@ -119,6 +119,6 @@
 
     z-index: 100;
 }
-.waf-tabview2 .waf-tabview2container.waf-state-active {
+.waf-tabs .waf-tabscontainer.waf-state-active {
     display: block;
 }
