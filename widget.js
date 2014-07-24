@@ -1,12 +1,12 @@
-WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(widget, TabsBar, TabsContainer) {
+WAF.define('TabView2', ['waf-core/widget', 'TabView2Bar', 'TabView2Container'], function(widget, TabView2Bar, TabView2Container) {
     "use strict";
 
-    var Tabs = widget.create('Tabs');
-    Tabs.inherit('waf-behavior/layout/multicontainer');
-    Tabs.inherit('waf-behavior/layout/composed');
-    Tabs.inherit('waf-behavior/layout/properties-container');
+    var TabView2 = widget.create('TabView2');
+    TabView2.inherit('waf-behavior/layout/container');
+    TabView2.inherit('waf-behavior/layout/composed');
+    TabView2.inherit('waf-behavior/layout/properties-container');
 
-    Tabs.addProperty('menuPosition', {
+    TabView2.addProperty('menuPosition', {
         type: 'enum',
         values: {
             'waf-tabview2-topLeft':     'top-left',
@@ -31,9 +31,9 @@ WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(wid
         }
     });
 
-    Tabs.setPart('menubar', TabsBar);
+    TabView2.setPart('menubar', TabView2Bar);
 
-    Tabs.addProperty('tabs', {
+    TabView2.addProperty('tabs', {
         type: 'list',
         attributes: [{
             name: 'title',
@@ -46,9 +46,9 @@ WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(wid
             type: 'boolean'
         }]
     });
-    Tabs.linkListPropertyToContainer('tabs');
+    TabView2.linkListPropertyToContainer('tabs');
 
-    Tabs.prototype.init = function() {
+    TabView2.prototype.init = function() {
         // force the default position css class
         this.addClass(this.menuPosition());
 
@@ -58,7 +58,7 @@ WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(wid
         }, this);
 
         menubar.subscribe('close', function(event) {
-            this.removeContainer(event.data.index);
+            this.removeWidget(event.data.index);
         }, this);
 
         //synhronise tabs with items
@@ -93,21 +93,43 @@ WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(wid
             });
         });
 
-        if (this.countContainers() > 0 && this.currentContainerIndex() === undefined) {
+        if (this.countWidgets() > 0 && this.currentContainerIndex() === undefined) {
             this.currentContainerIndex(0);
         }
     };
 
-    Tabs.doAfter('currentContainerIndex', function(index) {
-        if(arguments.length) {
+    /**
+     * Allow to choose the current page
+     * This API will part of the futur multicontainer behavior
+     * @param {integer} [index] - the index of the container to set as current
+     * @returns {integer} - The index of the current active container
+     */
+    TabView2.prototype.currentContainerIndex = function(index) {
+        if(typeof index === 'number') {
+            if(index < 0 || index >= this._children.length) {
+                throw "Container not found";
+            }
+            this.invoke('removeClass', 'waf-state-active');
+            this._currentContainer = index;
+            this._children[this._currentContainer].addClass('waf-state-active');
+            this.fire('select', { index: index, widget: this._children[this._currentContainer] });
+
             this._menubarSelectSubscriber.pause();
             this.getPart('menubar').select(index);
             this._menubarSelectSubscriber.resume();
         }
-    });
+        return this._currentContainer;
+    };
 
-    Tabs.defaultContainer(TabsContainer);
-    Tabs.restrictWidget(TabsContainer);
+    /**
+     * Set the current container as the last inserted or appended container
+     * This API will part of the futur multicontainer behavior
+     */
+    TabView2.prototype.setLastContainerAsCurrent = function() {
+        this.currentContainerIndex(this._lastWidgetIndex);
+    };
 
-    return Tabs;
+    TabView2.restrictWidget(TabView2Container);
+
+    return TabView2;
 });
