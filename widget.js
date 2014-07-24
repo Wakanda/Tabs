@@ -1,12 +1,12 @@
-WAF.define('TabView2', ['waf-core/widget', 'TabView2Bar', 'TabView2Container'], function(widget, TabView2Bar, TabView2Container) {
+WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(widget, TabsBar, TabsContainer) {
     "use strict";
 
-    var TabView2 = widget.create('TabView2');
-    TabView2.inherit('waf-behavior/layout/container');
-    TabView2.inherit('waf-behavior/layout/composed');
-    TabView2.inherit('waf-behavior/layout/properties-container');
+    var Tabs = widget.create('Tabs');
+    Tabs.inherit('waf-behavior/layout/container');
+    Tabs.inherit('waf-behavior/layout/composed');
+    Tabs.inherit('waf-behavior/layout/properties-container');
 
-    TabView2.addProperty('menuPosition', {
+    Tabs.addProperty('menuPosition', {
         type: 'enum',
         values: {
             'waf-tabview2-topLeft':     'top-left',
@@ -31,9 +31,9 @@ WAF.define('TabView2', ['waf-core/widget', 'TabView2Bar', 'TabView2Container'], 
         }
     });
 
-    TabView2.setPart('menubar', TabView2Bar);
+    Tabs.setPart('menubar', TabsBar);
 
-    TabView2.addProperty('tabs', {
+    Tabs.addProperty('tabs', {
         type: 'list',
         attributes: [{
             name: 'title',
@@ -46,9 +46,9 @@ WAF.define('TabView2', ['waf-core/widget', 'TabView2Bar', 'TabView2Container'], 
             type: 'boolean'
         }]
     });
-    TabView2.linkListPropertyToContainer('tabs');
+    Tabs.linkListPropertyToContainer('tabs');
 
-    TabView2.prototype.init = function() {
+    Tabs.prototype.init = function() {
         // force the default position css class
         this.addClass(this.menuPosition());
 
@@ -104,7 +104,7 @@ WAF.define('TabView2', ['waf-core/widget', 'TabView2Bar', 'TabView2Container'], 
      * @param {integer} [index] - the index of the container to set as current
      * @returns {integer} - The index of the current active container
      */
-    TabView2.prototype.currentContainerIndex = function(index) {
+    Tabs.prototype.currentContainerIndex = function(index) {
         if(typeof index === 'number') {
             if(index < 0 || index >= this._children.length) {
                 throw "Container not found";
@@ -125,11 +125,11 @@ WAF.define('TabView2', ['waf-core/widget', 'TabView2Bar', 'TabView2Container'], 
      * Set the current container as the last inserted or appended container
      * This API will part of the futur multicontainer behavior
      */
-    TabView2.prototype.setLastContainerAsCurrent = function() {
+    Tabs.prototype.setLastContainerAsCurrent = function() {
         this.currentContainerIndex(this._lastWidgetIndex);
     };
 
-    TabView2.restrictWidget(TabView2Container);
+    Tabs.restrictWidget(TabsContainer);
 
-    return TabView2;
+    return Tabs;
 });
