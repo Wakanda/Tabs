@@ -9,25 +9,25 @@ WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(wid
     Tabs.addProperty('menuPosition', {
         type: 'enum',
         values: {
-            'waf-tabview2-topLeft':     'top-left',
-            'waf-tabview2-topRight':    'top-right',
-            'waf-tabview2-leftTop':     'left-top',
-            'waf-tabview2-leftBottom':  'left-bottom',
-            'waf-tabview2-bottomLeft':  'bottom-left',
-            'waf-tabview2-bottomRight': 'bottom-right',
-            'waf-tabview2-rightTop':    'right-top',
-            'waf-tabview2-rightBottom': 'right-bottom'
+            'waf-tabs-topLeft':     'top-left',
+            'waf-tabs-topRight':    'top-right',
+            'waf-tabs-leftTop':     'left-top',
+            'waf-tabs-leftBottom':  'left-bottom',
+            'waf-tabs-bottomLeft':  'bottom-left',
+            'waf-tabs-bottomRight': 'bottom-right',
+            'waf-tabs-rightTop':    'right-top',
+            'waf-tabs-rightBottom': 'right-bottom'
         },
         onChange: function(value, oldValue) {
             this.removeClass(oldValue);
             this.addClass(value);
         },
         defaultValueCallback: function() {
-            var m = /waf-tabview2-(top|left|bottom|right)(Left|Right|Top|bottom)/.exec(this.node.className);
+            var m = /waf-tabs-(top|left|bottom|right)(Left|Right|Top|bottom)/.exec(this.node.className);
             if(m) {
                 return m[0];
             }
-            return 'waf-tabview2-topLeft';
+            return 'waf-tabs-topLeft';
         }
     });
 
