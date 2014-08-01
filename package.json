@@ -22,6 +22,7 @@
         {"id": "TabsContainer/package.json", "path": "WIDGETS_CUSTOM"},
         {"id": "Tabs/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "Tabs/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "Tabs/css/themes.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "Tabs/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}
     ]
 }
