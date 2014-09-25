@@ -16,6 +16,7 @@
     "keywords": ["wakanda", "widget"],
     "engines": {"wakanda": ">= 9"},
     "license": "MIT",
+    "externalWidgets" : ["Button","TabsBar","TabsContainer","TabsTab","Text"],
     "loadDependencies": [
         {"id": "Widget_V2"},
         {"id": "TabsBar/package.json", "path": "WIDGETS_CUSTOM"},
