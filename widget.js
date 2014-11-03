@@ -58,7 +58,7 @@ WAF.define('Tabs', ['waf-core/widget', 'TabsBar', 'TabsContainer'], function(wid
         }, this);
 
         menubar.subscribe('close', function(event) {
-            this.removeContainer(event.data.index);
+            this.fire('closeTab', event.data);
         }, this);
 
         //synhronise tabs with items
